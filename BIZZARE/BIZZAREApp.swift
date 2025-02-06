@@ -9,9 +9,12 @@ import SwiftUI
 
 @main
 struct BIZZAREApp: App {
+    @StateObject private var shopViewModel = ShopViewModel()
+    
     var body: some Scene {
         WindowGroup {
             SplashScreen()
+                .environmentObject(shopViewModel)
         }
     }
 }

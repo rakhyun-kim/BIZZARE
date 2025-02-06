@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct ShopView: View {
-    @StateObject private var viewModel = ShopViewModel()
+    @EnvironmentObject var viewModel: ShopViewModel
     @State private var selectedCategory = "ALL"
     @State private var showingCart = false
     @State private var showingSearch = false
@@ -68,4 +68,5 @@ struct ShopView: View {
 
 #Preview {
     ShopView()
+        .environmentObject(ShopViewModel())
 } 

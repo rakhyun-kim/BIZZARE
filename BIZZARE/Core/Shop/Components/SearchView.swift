@@ -1,9 +1,9 @@
 import SwiftUI
 
 struct SearchView: View {
+    @EnvironmentObject var viewModel: ShopViewModel
     @Environment(\.dismiss) var dismiss
     @State private var searchText = ""
-    @StateObject private var viewModel = ShopViewModel()
     
     var body: some View {
         NavigationView {
@@ -44,4 +44,5 @@ struct SearchView: View {
 
 #Preview {
     SearchView()
+        .environmentObject(ShopViewModel())
 } 

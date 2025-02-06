@@ -1,8 +1,8 @@
 import SwiftUI
 
 struct CartView: View {
+    @EnvironmentObject var viewModel: ShopViewModel
     @Environment(\.dismiss) var dismiss
-    @StateObject private var viewModel = ShopViewModel()
     
     var body: some View {
         NavigationView {
@@ -34,8 +34,8 @@ struct CartView: View {
                     }
                 }
             }
-            .navigationTitle("장바구니")
-            .navigationBarItems(trailing: Button("닫기") {
+            .navigationTitle("Cart")
+            .navigationBarItems(trailing: Button("Close") {
                 dismiss()
             })
             
@@ -45,7 +45,7 @@ struct CartView: View {
                     Button(action: {
                         // 결제 로직 구현
                     }) {
-                        Text("결제하기")
+                        Text("Pay")
                             .font(.headline)
                             .foregroundColor(.white)
                             .frame(maxWidth: .infinity)
@@ -62,4 +62,5 @@ struct CartView: View {
 
 #Preview {
     CartView()
+        .environmentObject(ShopViewModel())
 } 
