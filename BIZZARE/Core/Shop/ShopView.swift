@@ -17,6 +17,7 @@ struct ShopView: View {
                         ForEach(categories, id: \.self) { category in
                             Button(action: {
                                 selectedCategory = category
+                                viewModel.filterProducts(by: category)
                             }) {
                                 Text(category)
                                     .foregroundColor(selectedCategory == category ? .black : .gray)
@@ -33,8 +34,11 @@ struct ShopView: View {
                         GridItem(.flexible()),
                         GridItem(.flexible())
                     ], spacing: 20) {
-                        ForEach(viewModel.products) { product in
+                        ForEach(viewModel.filteredProducts) { product in
                             ProductCard(product: product)
+                                .onTapGesture {
+                                    // 상품 상세 페이지로 이동하는 로직 추가 예정
+                                }
                         }
                     }
                     .padding()

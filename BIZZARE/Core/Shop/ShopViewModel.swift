@@ -9,17 +9,26 @@ class ShopViewModel: ObservableObject {
     ]
     @Published var cartItems: [Product] = []
     @Published var searchResults: [Product] = []
+    @Published var filteredProducts: [Product] = []
     
     init() {
-        // 초기 검색 결과를 전체 상품으로 설정
         searchResults = products
+        filteredProducts = products
+    }
+    
+    func filterProducts(by category: String) {
+        if category == "ALL" {
+            filteredProducts = products
+        } else {
+            filteredProducts = products.filter { $0.category == category }
+        }
     }
     
     func searchProducts(query: String) {
         if query.isEmpty {
-            searchResults = products
+            searchResults = filteredProducts
         } else {
-            searchResults = products.filter { product in
+            searchResults = filteredProducts.filter { product in
                 product.name.lowercased().contains(query.lowercased()) ||
                 product.category.lowercased().contains(query.lowercased())
             }
